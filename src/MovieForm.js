@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { movieActions } from "./redux/movieSlice";
 
-const MovieForm = ({ setMovieState }) => {
+const MovieForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [posterURL, setPosterURL] = useState("");
   const [rating, setRating] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleclick = () => {
     const movie = {
@@ -15,7 +19,7 @@ const MovieForm = ({ setMovieState }) => {
       Rating: rating,
     };
 
-    setMovieState(prev => [...prev, movie])
+    dispatch(movieActions.addMovie(movie));
   };
 
   return (

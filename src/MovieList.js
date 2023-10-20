@@ -4,9 +4,10 @@ import Movies from "./Movies";
 import { useMemo, useState } from "react";
 import MovieForm from "./MovieForm";
 import Search from "./Search";
+import { useSelector } from "react-redux";
 
 const MovieList = () => {
-  const [movieState, setMovieState] = useState(Movies);
+  const { movies } = useSelector((state) => state.movies);
   const [search, setSearch] = useState("");
 
   const resultMovies = useMemo(() => {
@@ -19,13 +20,13 @@ const MovieList = () => {
           m.Rating.replace(/\s+/, "").includes(search.replace(/\s+/, ""))
       );
     }
-  }, [search, movieState]);
+  }, [search, movies]);
 
   return (
     <div>
       <Search setSearch={setSearch} search={search} />
 
-      <MovieForm setMovieState={setMovieState} />
+      <MovieForm />
       <CardGroup>
         {resultMovies.map((movie, index) => {
           return (
