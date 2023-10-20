@@ -13,8 +13,10 @@ const MovieList = () => {
     if (search === "") {
       return movieState;
     } else {
-      return movieState.filter((m) =>
-        m.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      return movieState.filter(
+        (m) =>
+          m.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+          m.Rating.replace(/\s+/, "").includes(search.replace(/\s+/, ""))
       );
     }
   }, [search, movieState]);
