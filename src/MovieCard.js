@@ -1,5 +1,6 @@
 import { Card } from "react-bootstrap";
-const MovieCard = ({ title, Description, PosterURL, Rating }) => {
+import { Link } from "react-router-dom";
+const MovieCard = ({ id, title, Description, PosterURL, Rating }) => {
   return (
     <Card
       style={{
@@ -15,6 +16,11 @@ const MovieCard = ({ title, Description, PosterURL, Rating }) => {
         <Card.Text>{Description}</Card.Text>
         <Card.Text>{PosterURL}</Card.Text>
         <Card.Text>{Rating}</Card.Text>
+        {!!id && (
+          <Card.Link as={Link} to={`/${id}`}>
+            See more info
+          </Card.Link>
+        )}
       </Card.Body>
     </Card>
   );

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const Search = ({ search, setSearch }) => {
   return (
     <>

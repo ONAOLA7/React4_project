@@ -1,6 +1,5 @@
 import { CardGroup } from "react-bootstrap";
 import MovieCard from "./MovieCard";
-import Movies from "./Movies";
 import { useMemo, useState } from "react";
 import MovieForm from "./MovieForm";
 import Search from "./Search";
@@ -12,9 +11,9 @@ const MovieList = () => {
 
   const resultMovies = useMemo(() => {
     if (search === "") {
-      return movieState;
+      return movies;
     } else {
-      return movieState.filter(
+      return movies.filter(
         (m) =>
           m.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
           m.Rating.replace(/\s+/, "").includes(search.replace(/\s+/, ""))
@@ -32,6 +31,7 @@ const MovieList = () => {
           return (
             <MovieCard
               key={index}
+              id={movie.id}
               title={movie.title}
               Description={movie.Description}
               PosterURL={movie.PosterURL}

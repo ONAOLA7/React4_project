@@ -10,7 +10,9 @@ const movieSlice = createSlice({
   initialState,
   reducers: {
     addMovie: (state, action) => {
-      state.movies = [...state.movies, action.payload];
+      const len = state.movies.length;
+      const id = len > 0 ? state.movies[len - 1].id + 1 : 1;
+      state.movies = [...state.movies, { ...action.payload, id }];
     },
   },
 });
